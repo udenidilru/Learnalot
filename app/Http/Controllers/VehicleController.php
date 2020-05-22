@@ -35,13 +35,26 @@ class VehicleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    { $storeData = $request->validate([
-        'class' => 'required|max:255',
-        'make' => 'required|max:255',
-        'number' => 'required|max:255',
-        'description' => 'required|max:255',
-    ]);
-    $vehicle = Vehicle::create($storeData);
+    { 
+        $this->validate($request, [
+            'class' => 'required',
+            'make' => 'required',
+            'number' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $product = new Vehicle($request->input()) ;
+     
+         if($file = $request->hasFile('image')) {
+            
+            $file = $request->file('image') ;
+            
+            $fileName = $file->getClientOriginalName() ;
+            $destinationPath = public_path().'/images/' ;
+            $file->move($destinationPath,$fileName);
+            $product->image = $fileName ;
+        }
+        $product->save() ;
 
     return redirect('/vehicles')->with('completed', 'Vehicle has been saved!');
     }
@@ -78,13 +91,46 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $updateData = $request->validate([
-            'class' => 'required|max:255',
-            'make' => 'required|max:255',
-            'number' => 'required|max:255',
-            'description' => 'required|max:255',
+        // $updateData = $request->validate([
+        //     'class' => 'required|max:255',
+        //     'make' => 'required|max:255',
+        //     'number' => 'required|max:255',
+        //     'description' => 'required|max:255',
+        // ]);
+        // Vehicle::whereId($id)->update($updateData);
+        $this->validate($request, [
+            'class' => 'required',
+            'make' => 'required',
+            'number' => 'required',
+            'description' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        Vehicle::whereId($id)->update($updateData);
+        // $product = new Product(find($id)) ;
+     
+         if($file = $request->hasFile('image')) {
+            $fileNamewithExt = $request->file('image')->getClientOriginalName();
+            $fileNamewithExt = pathinfo($fileNamewithExt,PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $fileNametostore = $fileName.'_'.time().'.'.$extension;
+            $path=$request->file('image')->storeAs('public/images',$fileNametostore);
+
+            // $file = $request->file('product_image') ;
+            
+            // $fileName = $file->getClientOriginalName() ;
+            // $destinationPath = public_path().'/images/' ;
+            // $file->move($destinationPath,$fileName);
+            // $product->product_image = $fileName ;
+        }
+        $product = Vehicle::find($id);
+        $product->class = $request->input('class');
+        $product->make = $request->input('make');
+        $product->class = $request->input('number');
+        $product->make = $request->input('description');
+        if($request->hasFile('image')){
+            $product->image = $fileNametostore;
+        }
+        $product->save() ;
+        
         return redirect('/vehicles')->with('completed', 'Vehicle has been updated');
     }
 

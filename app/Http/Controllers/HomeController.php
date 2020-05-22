@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Admin;
 use Illuminate\Http\Request;
+use DB;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $admins = DB::select('select * from admins');
+        $user = auth()->user();
+        
+        return view('home')->with('admins', $admins);
+       
     }
 }

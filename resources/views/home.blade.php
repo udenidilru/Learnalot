@@ -1,23 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+@foreach ($admins as $admin)
+   @if(auth()->user()->email == $admin->email)
+   <div class="card" style="height:600px; width:300px; margin-left:5px; background: #000000">
+            <h4 style = "color: #FFD700; margin:30px;">Learnalot</h4>
+            <a href="/vehicles">Vehicle management</a>
         </div>
-    </div>
-</div>
+   @else
+   <div class="card" style="height:600px; width:300px; margin-left:5px; background: #000000">
+            <h4 style = "color: #FFD700; margin:30px;">Learnalot</h4>
+            <a href="/vehicles/request">Vehicle Requests</a>
+        </div>
+   @endif
+@endforeach
+        
+    
+
 @endsection
