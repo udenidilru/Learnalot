@@ -25,9 +25,11 @@ class HomeController extends Controller
     public function index()
     {
         $admins = DB::select('select * from admins');
-        $user = auth()->user();
+        $students = DB::table('users')
+                    ->join('students', 'users.id', '=', 'students.id')
+                    ->get();
         
-        return view('home')->with('admins', $admins);
+        return view('home')->with('admins', $admins)->with('students',$students);
        
     }
 }

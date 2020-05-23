@@ -14,8 +14,6 @@
     </div><br />
   @endif
 
-<button class="btn btn-primary" type="button" onclick="window.location='{{ url("vrequests/create") }}'">Add New</button>
-
 
   <table class="table">
     <thead>
@@ -49,7 +47,7 @@
             <td>{{$vehicles->price}}</td>
             <td><img src="{{ asset("images/$vehicles->image") }}" alt="" style = "width:100px; height:100px"></td>
             <td class="text-center">
-                <a href="{{ route('vehicles.edit', $vehicles->id)}}" class="btn btn-primary btn-sm"">Accept</a>
+            <button class="btn btn-primary" type="button" onclick="window.location='{{ url("accept") }}'">Accept</button>
                 <form action="{{ route('vehicles.destroy', $vehicles->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')
