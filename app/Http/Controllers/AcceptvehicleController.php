@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Reqvehicle;
+use App\Acceptvehicle;
 use Illuminate\Http\Request;
 use DB;
 
-class ReqvehicleController extends Controller
+class AcceptvehicleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,8 @@ class ReqvehicleController extends Controller
      */
     public function index()
     {
-        $admins = DB::select('select * from admins');
-        $vehicle = Reqvehicle::all();
-        return view('vehicles.request')->with('admins', $admins)->with('vehicle', $vehicle);
+        // $chat = Adminchat::all();
+        // return view('chats.index', compact('chat'));
     }
 
     /**
@@ -27,7 +26,10 @@ class ReqvehicleController extends Controller
      */
     public function create()
     {
-        return view('vehicles.recreate');
+        
+        $chat = Acceptvehicle::all();
+        $admins = DB::select('select * from admins');
+        return view('vehicles.accept')->with('chat',$chat)->with('admins',$admins);
     }
 
     /**
@@ -39,28 +41,11 @@ class ReqvehicleController extends Controller
     public function store(Request $request)
     { 
         $this->validate($request, [
-            'uname' => 'required',
-            'email' => 'required',
-            'pno' => 'required',
-            'class' => 'required',
-            'make' => 'required',
-            'number' => 'required',
-            'usedyears' => 'required',
-            'description' => 'required',
-            'price' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'message' => 'required',
         ]);
-        $product = new Reqvehicle($request->input()) ;
+        $product = new Acceptvehicle($request->input()) ;
      
-         if($file = $request->hasFile('image')) {
-            
-            $file = $request->file('image') ;
-            
-            $fileName = $file->getClientOriginalName() ;
-            $destinationPath = public_path().'/images/' ;
-            $file->move($destinationPath,$fileName);
-            $product->image = $fileName ;
-        }
+         
         $product->save() ;
 
     return redirect('/accept/create')->with('completed', 'Vehicle has been saved!');
@@ -85,8 +70,8 @@ class ReqvehicleController extends Controller
      */
     public function edit($id)
     {
-        $vehicle = Reqvehicle::findOrFail($id);
-        return view('vehicles.reedit', compact('vehicle'));
+        $vehicle = Vehicle::findOrFail($id);
+        return view('vehicles.edit', compact('vehicle'));
     }
 
     /**
@@ -149,9 +134,9 @@ class ReqvehicleController extends Controller
      */
     public function destroy($id)
     {
-        $vehicle = Reqvehicle::findOrFail($id);
-        $vehicle->delete();
+        $chat = Acceptvehicle::findOrFail($id);
+        $chat->delete();
 
-        return redirect('/vrequests')->with('completed', 'Vehicle has been deleted');
+        return redirect('/accept/create')->with('completed', 'Vehicle has been deleted');
     }
 }

@@ -23,4 +23,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('vehicles', 'VehicleController');
 Route::resource('vrequests', 'ReqvehicleController');
 Route::resource('chats', 'AdminchatController');
+Route::resource('accept', 'AcceptvehicleController');
 
