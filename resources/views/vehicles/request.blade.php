@@ -47,7 +47,9 @@
             <td>{{$vehicles->price}}</td>
             <td><img src="{{ asset("images/$vehicles->image") }}" alt="" style = "width:100px; height:100px"></td>
             <td class="text-center">
-            <button class="btn btn-primary" type="button" onclick="window.location='{{ url("accept/create") }}'">Accept</button>
+            <a href="{{ route('accept.update', $vehicles->id)}}" class="btn btn-primary btn-sm"">Accept</a>
+            <!-- <button class="btn btn-primary" type="button" onclick="window.location='{{ url("accept/update") }}'">Accept</button> -->
+            <!-- <a href="actionedit/{{ $vehicles->id }}">Accept</a> -->
                 <form action="{{ route('vehicles.destroy', $vehicles->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')

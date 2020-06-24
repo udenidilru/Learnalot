@@ -24,4 +24,5 @@ Route::resource('vehicles', 'VehicleController');
 Route::resource('vrequests', 'ReqvehicleController');
 Route::resource('chats', 'AdminchatController');
 Route::resource('accept', 'AcceptvehicleController');
+Route::get('/actionedit/{id}', 'AcceptvehicleController@actionedit');
 

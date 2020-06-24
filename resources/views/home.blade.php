@@ -28,7 +28,6 @@
    @if(auth()->user()->email != $student->email)
    <div class="card" style="height:600px; width:300px; margin-left:5px; background: #000000">
             <h4 style = "color: #FFD700; margin:30px;">Learnalot</h4>
-            <a href="/chats/create">Chats</a>
             <a href="/vrequests/create">Vehicle Requests</a>
         </div>
    @endif

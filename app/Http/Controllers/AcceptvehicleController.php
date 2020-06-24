@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Acceptvehicle;
+use App\Reqvehicle;
 use Illuminate\Http\Request;
 use DB;
 
@@ -90,21 +91,21 @@ class AcceptvehicleController extends Controller
         //     'description' => 'required|max:255',
         // ]);
         // Vehicle::whereId($id)->update($updateData);
-        $this->validate($request, [
-            'class' => 'required',
-            'make' => 'required',
-            'number' => 'required',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        // $this->validate($request, [
+        //     'class' => 'required',
+        //     'make' => 'required',
+        //     'number' => 'required',
+        //     'description' => 'required',
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
         // $product = new Product(find($id)) ;
      
-         if($file = $request->hasFile('image')) {
-            $fileNamewithExt = $request->file('image')->getClientOriginalName();
-            $fileNamewithExt = pathinfo($fileNamewithExt,PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNametostore = $fileName.'_'.time().'.'.$extension;
-            $path=$request->file('image')->storeAs('public/images',$fileNametostore);
+        //  if($file = $request->hasFile('image')) {
+        //     $fileNamewithExt = $request->file('image')->getClientOriginalName();
+        //     $fileNamewithExt = pathinfo($fileNamewithExt,PATHINFO_FILENAME);
+        //     $extension = $request->file('image')->getClientOriginalExtension();
+        //     $fileNametostore = $fileName.'_'.time().'.'.$extension;
+        //     $path=$request->file('image')->storeAs('public/images',$fileNametostore);
 
             // $file = $request->file('product_image') ;
             
@@ -112,18 +113,19 @@ class AcceptvehicleController extends Controller
             // $destinationPath = public_path().'/images/' ;
             // $file->move($destinationPath,$fileName);
             // $product->product_image = $fileName ;
-        }
+        // }
         $product = Vehicle::find($id);
-        $product->class = $request->input('class');
-        $product->make = $request->input('make');
-        $product->class = $request->input('number');
-        $product->make = $request->input('description');
-        if($request->hasFile('image')){
-            $product->image = $fileNametostore;
-        }
+        // $product->class = $request->input('class');
+        // $product->make = $request->input('make');
+        // $product->class = $request->input('number');
+        // $product->make = $request->input('description');
+        // if($request->hasFile('image')){
+        //     $product->image = $fileNametostore;
+        // }
+        $product->action = 'Accepted';
         $product->save() ;
         
-        return redirect('/vehicles')->with('completed', 'Vehicle has been updated');
+        return redirect('/vrequests')->with('completed', 'Vehicle has been updated');
     }
 
     /**
@@ -138,5 +140,17 @@ class AcceptvehicleController extends Controller
         $chat->delete();
 
         return redirect('/accept/create')->with('completed', 'Vehicle has been deleted');
+    }
+    public function actionedit(Request $request)
+    {
+        // Add Validation
+        $admins = DB::select('select * from admins');
+            $vehicle = Reqvehicle::all();
+        DB::table('reqvehicles')
+            ->update(['action' => 'Accept']);
+
+            
+            return view('vehicles.request')->with('admins', $admins)->with('vehicle', $vehicle);
+
     }
 }

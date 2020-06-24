@@ -25,6 +25,7 @@ class CreateReqvehiclesTable extends Migration
             $table->string('description');
             $table->bigInteger('price');
             $table->string('image');
+            $table->string('action');
             $table->timestamps();
         });
     }

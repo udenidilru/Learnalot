@@ -14,6 +14,7 @@
     </div><br />
   @endif
 
+<button class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'">Back</button>
 <button class="btn btn-primary" type="button" onclick="window.location='{{ url("vehicles/create") }}'">Add New</button>
 
 
