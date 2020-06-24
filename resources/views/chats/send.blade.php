@@ -23,21 +23,23 @@
 
 <button class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'">Back</button>
 
-<div class="card">
+<div class="card" style="width:1000px; margin-left:30px;">
+<ul class="list-group">
 @foreach($chat as $chats)
 <div class="row">
-    <p style="margin-left:20px;">{{$chats->message}}</p>
+    <li class="list-group-item list-group-item-success" style="margin-top:20px; width:800px; margin-left:50px">{{$chats->message}}</li>
     @foreach ($admins as $admin)
    @if(auth()->user()->email == $admin->email)
     <form action="{{ route('chats.destroy', $chats->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')
-                    <button class="btn btn-danger btn-sm"" type="submit">Delete</button>
+                    <button style="margin-top:20px;" class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
                   </form>
                   @endif
 @endforeach
 </div>
 @endforeach
+</ul>
 
 </div>
 @foreach ($admins as $admin)
