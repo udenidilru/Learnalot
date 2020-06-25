@@ -1,55 +1,37 @@
+
 @extends('layouts.app')
 
 @section('content')
-<style>
-  .push-top {
-    margin-top: 50px;
-  }
-</style>
- 
-<div class="push-top">
-  @if(session()->get('success'))
-    <div class="alert alert-success">
-      {{ session()->get('success') }}  
-    </div><br />
-  @endif
-
 <button class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'">Back</button>
-<button class="btn btn-primary" type="button" onclick="window.location='{{ url("vehicles/create") }}'">Add New</button>
-
-
-  <table class="table">
-    <thead>
-        <tr class="table-warning">
-          <td>ID</td>
-          <td>Class</td>
-          <td>Make</td>
-          <td>Number</td>
-          <td>Description</td>
-          <td>Image</td>
-          <td class="text-center">Action</td>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($vehicle as $vehicles)
-        <tr>
-            <td>{{$vehicles->id}}</td>
-            <td>{{$vehicles->class}}</td>
-            <td>{{$vehicles->make}}</td>
-            <td>{{$vehicles->number}}</td>
-            <td>{{$vehicles->description}}</td>
-            <td><img src="{{ asset("images/$vehicles->image") }}" alt="" style = "width:100px; height:100px"></td>
-            <td class="text-center">
-                <a href="{{ route('vehicles.edit', $vehicles->id)}}" class="btn btn-primary btn-sm"">Edit</a>
-                <form action="{{ route('vehicles.destroy', $vehicles->id)}}" method="post" style="display: inline-block">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger btn-sm"" type="submit">Delete</button>
-                  </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-  </table>
-<div>
+<button class="btn btn-primary" type="button" onclick="window.location='{{ url("vehicles/create") }}'">Add Vehicle</button>
+<table class="table table-bordered table-striped">
+ <tr>
+  <th width="10%">Image</th>
+  <th width="35%">Class</th>
+  <th width="35%">Make</th>
+  <th width="35%">Number</th>
+  <th width="35%">Description</th>
+  <th width="30%">Action</th>
+ </tr>
+ @foreach($data as $row)
+  <tr>
+   <td><img src="{{ URL::to('/') }}/images/{{ $row->image }}" class="img-thumbnail" width="75" /></td>
+   <td>{{ $row->class }}</td>
+   <td>{{ $row->make }}</td>
+   <td>{{ $row->number }}</td>
+   <td>{{ $row->description }}</td>
+   <td>
+				
+				<form action="{{ route('vehicles.destroy', $row->id) }}" method="post">
+					
+					<a href="{{ route('vehicles.edit', $row->id) }}" class="btn btn-warning">Edit</a>
+					@csrf
+					@method('DELETE')
+					<button type="submit" class="btn btn-danger">Delete</button>
+				</form>
+			</td>
+  </tr>
+ @endforeach
+</table>
+{!! $data->links() !!}
 @endsection

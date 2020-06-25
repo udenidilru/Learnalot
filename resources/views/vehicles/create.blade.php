@@ -1,68 +1,70 @@
 @extends('layouts.app')
 
 @section('content')
-
-<style>
-    .container {
-      max-width: 450px;
-    }
-    .push-top {
-      margin-top: 10px;
-    }
-</style>
-<button class="btn btn-primary" type="button" onclick="window.location='{{ url("vehicles") }}'">Back</button>
-<div class="card push-top">
-  <div class="card-header">
-    Add Vehicle
-  </div>
-
-  <div class="card-body">
-    @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-      </div><br />
-    @endif
-    {!! Form::open(array('route' => 'vehicles.store','method'=>'POST','files'=>true)) !!}
-      <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-6">
-            <div class="form-group">
-                <strong>Class:</strong>
-                {!! Form::text('class', null, array('placeholder' => 'Class','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Make:</strong>
-                {!! Form::text('make', null, array('placeholder' => 'Make','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Number:</strong>
-                {!! Form::text('number', null, array('placeholder' => 'Number','class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Description:</strong>
-                {!! Form::textarea('description', null, array('placeholder' => 'Description','class' => 'form-control','style'=>'height:100px')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-6">
-            <div class="form-group">
-                <strong>Upload File:</strong>
-                {!! Form::file('image', array('class' => 'form-control')) !!}
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-    </div>
-    {!! Form::close() !!}
-  </div>
+@if($errors->any())
+<div class="alert alert-danger">
+ <ul>
+  @foreach($errors->all() as $error)
+  <li>{{ $error }}</li>
+  @endforeach
+ </ul>
 </div>
+@endif
+<div align="right">
+ 
+</div>
+
+<form method="post" action="{{ route('vehicles.store') }}" enctype="multipart/form-data">
+
+ @csrf
+ <div class="form-group">
+  <label class="col-md-4 text-right">Class</label>
+  <div class="col-md-8">
+   <input type="text" name="class" class="form-control input-lg" />
+  </div>
+ </div>
+ <br />
+ <br />
+ <br />
+ <div class="form-group">
+  <label class="col-md-4 text-right">Make</label>
+  <div class="col-md-8">
+   <input type="text" name="make" class="form-control input-lg" />
+  </div>
+ </div>
+ <br />
+ <br />
+ <br />
+ <div class="form-group">
+  <label class="col-md-4 text-right">number</label>
+  <div class="col-md-8">
+   <input type="text" name="number" class="form-control input-lg" />
+  </div>
+ </div>
+ <br />
+ <br />
+ <br />
+ <div class="form-group">
+  <label class="col-md-4 text-right">Description</label>
+  <div class="col-md-8">
+   <input type="text" name="description" class="form-control input-lg" />
+  </div>
+ </div>
+ <br />
+ <br />
+ <br />
+ <div class="form-group">
+  <label class="col-md-4 text-right">Select Image</label>
+  <div class="col-md-8">
+   <input type="file" name="image" />
+  </div>
+ </div>
+ <br /><br /><br />
+ <div class="form-group text-center">
+  <input type="submit" name="add" class="btn btn-primary input-lg" value="Add" />
+ </div>
+
+</form>
+
 @endsection
+
