@@ -13,14 +13,16 @@
       {{ session()->get('success') }}  
     </div><br />
   @endif
-  <h2>Vehicle Requests</h2>
-  <button class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'">Back</button>
+  <h2 style="margin-top:-50px; margin-left:300px;">Vehicle Requests</h2>
+  <button style="margin-left:20px;" class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'"><i class="fas fa-angle-left"></i></button>
 <!-- <div class="row"> -->
 <div class="card-columns"> 
 @foreach($vehicle as $vehicles)
 <div class="card" style="width:500px, matgin-left: 100px">
-  <div class="card-body">
-            {{$vehicles->id}}<br>
+  <div  class="card-body">
+  <img src="{{ asset("images/$vehicles->image") }}" alt="" style = "display: block;margin-left: auto;margin-right: auto;width:300px; height:200px;"><br>
+  <div style="text-align:center;">
+            <!-- {{$vehicles->id}}<br> -->
             {{$vehicles->uname}}<br>
             {{$vehicles->email}}<br>
             {{$vehicles->pno}}<br>
@@ -30,7 +32,7 @@
             {{$vehicles->usedyears}}<br>
             {{$vehicles->description}}<br>
             {{$vehicles->price}}<br>
-            <img src="{{ asset("images/$vehicles->image") }}" alt="" style = "width:100px; height:100px">
+            
             <a href="{{ route('accept.update', $vehicles->id)}}" class="btn btn-primary btn-sm"">Accept</a>
              <!-- <button class="btn btn-primary" type="button" onclick="window.location='{{ url("accept/update") }}'">Accept</button> --> 
              <!-- <a href="actionedit/{{ $vehicles->id }}">Accept</a>  -->
@@ -39,6 +41,7 @@
                     @method('DELETE')
                     <button class="btn btn-danger btn-sm"" type="submit">Reject</button>
                   </form>
+                  </div>
   </div>
 </div>
 @endforeach

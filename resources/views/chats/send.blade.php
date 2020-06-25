@@ -20,14 +20,15 @@
         margin-left:50px;
     }
 </style>
-
-<button class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'">Back</button>
-
-<div class="card" style="width:1000px; margin-left:30px;">
+<div class="row">
+<button style="margin-left:20px;" class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'"><i class="fas fa-angle-left"></i></button>
+<div style="font-size:30px; margin-left:200px;">Announcements</div>
+</div>
+<div style="width:1000px; height:500px; margin-left:200px;overflow-y: scroll;overflow-x: hidden;">
 <ul class="list-group">
 @foreach($chat as $chats)
 <div class="row">
-    <li class="list-group-item list-group-item-success" style="margin-top:20px; width:800px; margin-left:50px">{{$chats->message}}</li>
+    <li class="list-group-item list-group-item-success" style="word-break: break-all;margin-top:20px; width:800px; margin-left:50px">{{$chats->message}}</li>
     @foreach ($admins as $admin)
    @if(auth()->user()->email == $admin->email)
     <form action="{{ route('chats.destroy', $chats->id)}}" method="post" style="display: inline-block">
@@ -44,18 +45,21 @@
 </div>
 @foreach ($admins as $admin)
    @if(auth()->user()->email == $admin->email)
-  <div class="card-body">
+   
+  <div style="width:950px;margin-left:230px;"  >
     
       <form method="post" action="{{ route('chats.store') }}">
           <div class="form-group">
               @csrf
-              <label for="message">Message</label>
-              <input style="width:100px:" type="text" class="form-control" name="message"/>
+              <!-- <label for="message">Message</label> -->
+              <input style="margin-top:20px;" placeholder="Type here........" type="text" class="form-control" name="message"/>
+              
           </div>
-        
-          <button style="width:100px:" type="submit" class="btn btn-block btn-danger">Send</button>
+          <!-- <button style="width:100px:" type="submit" class="btn btn-block btn-danger">Send</button> -->
+          
           
       </form>
+  </div>
   </div>
   @endif
 @endforeach

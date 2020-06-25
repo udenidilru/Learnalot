@@ -91,6 +91,98 @@ class VehicleController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // $image_name = $request->image;
+        // $image = $request->file('image');
+        // if($image != '')
+        // {
+        //     $request->validate([
+        //         'class'    =>  'required',
+        //         'make'     =>  'required',
+        //         'number'    =>  'required',
+        //         'description'     =>  'required',
+        //         'image'         =>  'image|max:2048'
+        //     ]);
+
+        //     $image_name = rand() . '.' . $image->getClientOriginalExtension();
+        //     $image->move(public_path().'/images/', $image_name);
+        // }
+        // else
+        // {
+        //     $request->validate([
+        //         'class'    =>  'required',
+        //         'make'     =>  'required',
+        //         'number'    =>  'required',
+        //         'description'     =>  'required',
+        //         'image'         =>  'required'
+        //     ]);
+        // }
+
+        // $form_data = array(
+        //     'class'       =>   $request->class,
+        //     'make'        =>   $request->make,
+        //     'number'       =>   $request->number,
+        //     'description'        =>   $request->description,
+        //     'image'            =>   $image_name
+        // );
+  
+        // Vehicle::whereId($id)->update($form_data);
+
+        // $this->validate($request, [
+        //     'class' => 'required',
+        //     'make' => 'required',
+        //     'number' => 'required',
+        //     'description' => 'required',
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+        // $product = new Vehicle($request->input()) ;
+     
+        //  if($file = $request->hasFile('image')) {
+            
+        //     $file = $request->file('image') ;
+            
+        //     $fileName = $file->getClientOriginalName() ;
+        //     $destinationPath = public_path().'/images/' ;
+        //     $file->move($destinationPath,$fileName);
+        //     $product->image = $fileName ;
+        // }
+        // $product->save() ;
+
+
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
+        if($image != '')
+        {
+            $request->validate([
+                'class'    =>  'required',
+                'make'     =>  'required',
+                'number'    =>  'required',
+                'description'     =>  'required',
+                'image'         =>  'image|max:2048'
+            ]);
+
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images'), $image_name);
+        }
+        else
+        {
+            $request->validate([
+                'class'    =>  'required',
+                'make'     =>  'required',
+                'number'    =>  'required',
+                'description'     =>  'required',
+              //  'image'         =>  'required'
+            ]);
+        }
+
+        $form_data = array(
+            'class'       =>   $request->class,
+            'make'        =>   $request->make,
+            'number'       =>   $request->number,
+            'description'        =>   $request->description,
+            'image'            =>   $image_name
+        );
+  
+        Vehicle::whereId($id)->update($form_data);
         // $updateData = $request->validate([
         //     'class' => 'required|max:255',
         //     'make' => 'required|max:255',
@@ -98,21 +190,21 @@ class VehicleController extends Controller
         //     'description' => 'required|max:255',
         // ]);
         // Vehicle::whereId($id)->update($updateData);
-        $this->validate($request, [
-            'class' => 'required',
-            'make' => 'required',
-            'number' => 'required',
-            'description' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        // $this->validate($request, [
+        //     'class' => 'required',
+        //     'make' => 'required',
+        //     'number' => 'required',
+        //     'description' => 'required',
+        //     'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
         // $product = new Product(find($id)) ;
      
-         if($file = $request->hasFile('image')) {
-            $fileNamewithExt = $request->file('image')->getClientOriginalName();
-            $fileNamewithExt = pathinfo($fileNamewithExt,PATHINFO_FILENAME);
-            $extension = $request->file('image')->getClientOriginalExtension();
-            $fileNametostore = $fileName.'_'.time().'.'.$extension;
-            $path=$request->file('image')->storeAs('public/images',$fileNametostore);
+        //  if($file = $request->hasFile('image')) {
+        //     $fileNamewithExt = $request->file('image')->getClientOriginalName();
+        //     $fileNamewithExt = pathinfo($fileNamewithExt,PATHINFO_FILENAME);
+        //     $extension = $request->file('image')->getClientOriginalExtension();
+        //     $fileNametostore = $fileName.'_'.time().'.'.$extension;
+        //     $path=$request->file('image')->storeAs('public/images',$fileNametostore);
 
             // $file = $request->file('product_image') ;
             
@@ -120,16 +212,16 @@ class VehicleController extends Controller
             // $destinationPath = public_path().'/images/' ;
             // $file->move($destinationPath,$fileName);
             // $product->product_image = $fileName ;
-        }
-        $product = Vehicle::find($id);
-        $product->class = $request->input('class');
-        $product->make = $request->input('make');
-        $product->class = $request->input('number');
-        $product->make = $request->input('description');
-        if($request->hasFile('image')){
-            $product->image = $fileNametostore;
-        }
-        $product->save() ;
+        // }
+        // $product = Vehicle::find($id);
+        // $product->class = $request->input('class');
+        // $product->make = $request->input('make');
+        // $product->class = $request->input('number');
+        // $product->make = $request->input('description');
+        // if($request->hasFile('image')){
+        //     $product->image = $fileNametostore;
+        // }
+        // $product->save() ;
         
         return redirect('/vehicles')->with('completed', 'Vehicle has been updated');
     }
