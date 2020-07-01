@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminchatsTable extends Migration
+class CreateATAnnounsesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateAdminchatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('adminchats', function (Blueprint $table) {
+        Schema::create('a_t_announses', function (Blueprint $table) {
             $table->id();
             $table->string('message');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateAdminchatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('adminchats');
+        Schema::dropIfExists('a_t_announses');
     }
 }

@@ -28,8 +28,11 @@ class HomeController extends Controller
         $students = DB::table('users')
                     ->join('students', 'users.id', '=', 'students.id')
                     ->get();
+        $trainers = DB::table('users')
+                    ->join('trainers', 'users.id', '=', 'trainers.id')
+                    ->get();
         
-        return view('home')->with('admins', $admins)->with('students',$students);
+        return view('home')->with('admins', $admins)->with('students',$students)->with('trainers',$trainers);
        
     }
 }

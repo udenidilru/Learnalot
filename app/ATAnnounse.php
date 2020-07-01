@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Adminchat extends Model
+class ATAnnounse extends Model
 {
     protected $fillable = [
         'message'

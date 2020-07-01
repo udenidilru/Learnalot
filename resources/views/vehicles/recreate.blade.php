@@ -10,8 +10,8 @@
       margin-top: 10px;
     }
 </style>
-<button class="btn btn-primary" type="button" onclick="window.location='{{ url("vrequests") }}'">Back</button>
-<button class="btn btn-primary" type="button" onclick="window.location='{{ url("accept/create") }}'">Admin Chat</button>
+<button class="btn btn-primary" type="button" onclick="window.location='{{ url("home") }}'">Back</button>
+<!-- <button class="btn btn-primary" type="button" onclick="window.location='{{ url("accept/create") }}'">Admin Chat</button> -->
 <div class="card push-top">
   <div class="card-header">
     Add Vehicle Request

@@ -25,7 +25,7 @@
 
             <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-comments"style="margin-right:10px;"></i>   Communication</h4>
             <a style = "color: #FFD700; margin-left:50px;" href="/asannounse/create">Student Announcement</a>
-            <a style = "color: #FFD700; margin-left:50px;" href="/chats/create">Trainer Announcement</a>
+            <a style = "color: #FFD700; margin-left:50px;" href="/atannounse/create">Trainer Announcement</a>
 
             <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-graduation-cap"style="margin-right:10px;"></i>   Learning</h4>
             <a style = "color: #FFD700; margin-left:50px;" href="#">Learning Matirials</a>
@@ -43,10 +43,23 @@
 
    @foreach ($students as $student)
    @if(auth()->user()->email == $student->email)
-   <div class="card" style="height:600px; width:300px; margin-left:5px; background: #000000">
-            <h4 style = "color: #FFD700; margin:30px;">Learnalot</h4>
-            <a href="/chats/create">Chats</a>
-            <a href="/vrequests/create">Vehicle Requests</a>
+   <div class="card" style="height:750px; width:300px; margin-left:5px;margin-top:-50px; background: #6495ED">
+            <h4 style = "color: #000000; margin:30px;font-family:Sofia;font-size: 50px;">Learnalot</h4>
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-car"style="margin-right:10px;"></i>   Vehicles</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/vrequests/create">Vehicle Requests</a>
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-comments"style="margin-right:10px;"></i>   Communication</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/asannounse/create">Announcements</a>
+        </div>
+   @endif
+@endforeach
+@foreach ($trainers as $trainer)
+   @if(auth()->user()->email == $trainer->email)
+   <div class="card" style="height:750px; width:300px; margin-left:5px;margin-top:-50px; background: #6495ED">
+            <h4 style = "color: #000000; margin:30px;font-family:Sofia;font-size: 50px;">Learnalot</h4>
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-car"style="margin-right:10px;"></i>   Vehicles</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/vrequests/create">Vehicle Requests</a>
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-comments"style="margin-right:10px;"></i>   Communication</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/atannounse/create">Announcements</a>
         </div>
    @endif
 @endforeach
@@ -55,11 +68,16 @@
 @if(auth()->user()->email != $admin->email)
 @foreach ($students as $student)
    @if(auth()->user()->email != $student->email)
-   <div class="card" style="height:600px; width:300px; margin-left:5px; background: #000000">
-            <h4 style = "color: #FFD700; margin:30px;">Learnalot</h4>
-            <a href="/vrequests/create">Vehicle Requests</a>
+   @foreach ($trainers as $trainer)
+   @if(auth()->user()->email != $trainer->email)
+   <div class="card" style="height:750px; width:300px; margin-left:5px;margin-top:-50px; background: #6495ED">
+            <h4 style = "color: #000000; margin:30px;font-family:Sofia;font-size: 50px;">Learnalot</h4>
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-car"style="margin-right:10px;"></i>   Vehicles</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/vrequests/create">Vehicle Requests</a>
         </div>
    @endif
+@endforeach
+@endif
 @endforeach
 @endif
 @endforeach

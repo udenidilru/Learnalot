@@ -86,19 +86,7 @@
   text-align: center;
   color: white;">
             <img  style="width: 1600px; height: 400px; margin-top: -330px;" src="{{ asset("images/car.jpg") }}" alt="">
-            <!-- <nav class="navbar navbar-expand-sm bg-light">
-            <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" href="#">home,courses,pages,gallery,teachers,blog,contact</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 2</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link 3</a>
-    </li>
-  </ul>
-  </nav> -->
+          
         <div class="row">
             <div style="text-shadow: 2px 2px;font-size:50px;margin-bottom:400px; position: absolute;top: -250px;left: 50%;transform: translate(-50%, -50%);"><img style="width:100px;height:100px;" src="{{ asset("images/logo.jpg") }}" alt="">LEARNALOT</div>
             </div>
