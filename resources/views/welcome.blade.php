@@ -86,7 +86,7 @@
   text-align: center;
   color: white;">
             <img  style="width: 1600px; height: 400px; margin-top: -330px;" src="{{ asset("images/car.jpg") }}" alt="">
-            <nav class="navbar navbar-expand-sm bg-light">
+            <!-- <nav class="navbar navbar-expand-sm bg-light">
             <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" href="#">home,courses,pages,gallery,teachers,blog,contact</a>
@@ -98,8 +98,10 @@
       <a class="nav-link" href="#">Link 3</a>
     </li>
   </ul>
-  </nav>
-            <div style="text-shadow: 2px 2px;font-size:50px;margin-bottom:400px; position: absolute;top: -250px;left: 50%;transform: translate(-50%, -50%);">LEARNALOT</div>
+  </nav> -->
+        <div class="row">
+            <div style="text-shadow: 2px 2px;font-size:50px;margin-bottom:400px; position: absolute;top: -250px;left: 50%;transform: translate(-50%, -50%);"><img style="width:100px;height:100px;" src="{{ asset("images/logo.jpg") }}" alt="">LEARNALOT</div>
+            </div>
   <div style="text-shadow: 2px 2px;color:green; font-size:50px;margin-bottom:400px; position: absolute;top: -150px;left: 50%;transform: translate(-50%, -50%);">SAFE DRIVE & GET LICENSE</div>
   @if (Route::has('login'))
                 <div style="font-size:30px;margin-bottom:400px; position: absolute;top: -100px;left: 50%;transform: translate(-50%, -50%);">
@@ -116,6 +118,29 @@
             @endif
         </div>
         </div>
+
+        <div style="margin-top:-300px;height:300px;" class="card-deck">
+  <div class="card bg-primary">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the first card</p>
+    </div>
+  </div>
+  <div class="card bg-warning">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the second card</p>
+    </div>
+  </div>
+  <div class="card bg-success">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the third card</p>
+    </div>
+  </div>
+  <div class="card bg-danger">
+    <div class="card-body text-center">
+      <p class="card-text">Some text inside the fourth card</p>
+    </div>
+  </div>
+</div>
         
     </body>
 </html>

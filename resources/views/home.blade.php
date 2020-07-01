@@ -3,11 +3,40 @@
 @section('content')
 @foreach ($admins as $admin)
    @if(auth()->user()->email == $admin->email)
-   <div class="card" style="height:600px; width:300px; margin-left:5px; background: #000000">
-            <h4 style = "color: #FFD700; margin:30px;">Learnalot</h4>
-            <a href="/vehicles">Vehicle management</a>
-            <a href="/vrequests">Vehicle Requests</a>
-            <a href="/chats/create">Chats</a>
+   <div class="card" style="height:750px; width:300px; margin-left:5px;margin-top:-50px; background: #6495ED">
+            <h4 style = "color: #000000; margin:30px;font-family:Sofia;font-size: 50px;">Learnalot</h4>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-home" style="margin-right:10px;"></i>   Home</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/home">Home</a>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-book"style="margin-right:10px;"></i>   Courses</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Courses</a>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-user"style="margin-right:10px;"></i>   Trainers</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Trainer Profiles</a>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Available Trainers</a>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-user"style="margin-right:10px;"></i>   Students</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Student Profiles</a>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-car"style="margin-right:10px;"></i>   Vehicles</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/vehicles">Vehicle Management</a>
+            <a style = "color: #FFD700; margin-left:50px;" href="/vrequests">Vehicle Requests</a>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-comments"style="margin-right:10px;"></i>   Communication</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="/chats/create">Student Announcement</a>
+            <a style = "color: #FFD700; margin-left:50px;" href="/chats/create">Trainer Announcement</a>
+
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-graduation-cap"style="margin-right:10px;"></i>   Learning</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Learning Matirials</a>
+
+            
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-camera"style="margin-right:10px;"></i>   Gallary</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Galary</a>
+
+            
+            <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-id-card"style="margin-right:10px;"></i>   Contact</h4>
+            <a style = "color: #FFD700; margin-left:50px;" href="#">Contact</a>
         </div>
         @endif
 @endforeach
