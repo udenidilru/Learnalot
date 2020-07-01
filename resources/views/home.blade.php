@@ -24,7 +24,7 @@
             <a style = "color: #FFD700; margin-left:50px;" href="/vrequests">Vehicle Requests</a>
 
             <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-comments"style="margin-right:10px;"></i>   Communication</h4>
-            <a style = "color: #FFD700; margin-left:50px;" href="/chats/create">Student Announcement</a>
+            <a style = "color: #FFD700; margin-left:50px;" href="/asannounse/create">Student Announcement</a>
             <a style = "color: #FFD700; margin-left:50px;" href="/chats/create">Trainer Announcement</a>
 
             <h4 style = "color: #2F4F4F;font-weight: bold; margin-left:10px;"><i class="fas fa-graduation-cap"style="margin-right:10px;"></i>   Learning</h4>

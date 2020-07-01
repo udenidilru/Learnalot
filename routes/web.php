@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('vehicles', 'VehicleController');
 Route::resource('vrequests', 'ReqvehicleController');
-Route::resource('chats', 'AdminchatController');
+Route::resource('asannounse', 'ASAnnounsesController');
 Route::resource('accept', 'AcceptvehicleController');
 Route::get('/actionedit/{id}', 'AcceptvehicleController@actionedit');
 

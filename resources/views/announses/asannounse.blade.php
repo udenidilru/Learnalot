@@ -31,7 +31,7 @@
     <li class="list-group-item list-group-item-success" style="word-break: break-all;margin-top:20px; width:800px; margin-left:50px">{{$chats->message}}</li>
     @foreach ($admins as $admin)
    @if(auth()->user()->email == $admin->email)
-    <form action="{{ route('chats.destroy', $chats->id)}}" method="post" style="display: inline-block">
+    <form action="{{ route('asannounse.destroy', $chats->id)}}" method="post" style="display: inline-block">
                     @csrf
                     @method('DELETE')
                     <button style="margin-top:20px;" class="btn btn-danger btn-sm" type="submit"><i class="fas fa-trash"></i></button>
@@ -48,7 +48,7 @@
    
   <div style="width:950px;margin-left:230px;"  >
     
-      <form method="post" action="{{ route('chats.store') }}">
+      <form method="post" action="{{ route('asannounse.store') }}">
           <div class="form-group">
               @csrf
               <!-- <label for="message">Message</label> -->
