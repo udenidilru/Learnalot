@@ -18,6 +18,8 @@ class CreateVehiclesTable extends Migration
             $table->string('class');
             $table->string('make');
             $table->string('number');
+            $table->string('color');
+            $table->string('enumber');
             $table->string('description');
             $table->string('image');
             $table->timestamps();

@@ -20,7 +20,7 @@
                 @csrf
                 @method('PATCH')
       <div class="form-group">
-       <label class="col-md-4 text-right">Class</label>
+       <label class="col-md-4 text-right">Vehicle Types</label>
        <div class="col-md-8">
         <input type="text" name="class" value="{{ $vehicle->class }}" class="form-control input-lg" />
        </div>
@@ -29,7 +29,7 @@
       <br />
       <br />
       <div class="form-group">
-       <label class="col-md-4 text-right">Make</label>
+       <label class="col-md-4 text-right">Vehicle Model</label>
        <div class="col-md-8">
         <input type="text" name="make" value="{{ $vehicle->make }}" class="form-control input-lg" />
        </div>
@@ -38,9 +38,27 @@
       <br />
       <br />
       <div class="form-group">
-       <label class="col-md-4 text-right">number</label>
+       <label class="col-md-4 text-right">Vehicle Number</label>
        <div class="col-md-8">
         <input type="text" name="number" value="{{ $vehicle->number }}" class="form-control input-lg" />
+       </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="form-group">
+       <label class="col-md-4 text-right">Vehicle Color</label>
+       <div class="col-md-8">
+        <input type="color" name="color" value="{{ $vehicle->color }}" class="form-control input-lg" />
+       </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="form-group">
+       <label class="col-md-4 text-right">Engine Number</label>
+       <div class="col-md-8">
+        <input type="text" name="enumber" value="{{ $vehicle->enumber }}" class="form-control input-lg" />
        </div>
       </div>
       <br />

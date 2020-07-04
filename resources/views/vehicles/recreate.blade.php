@@ -49,13 +49,13 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
-                <strong>Class:</strong>
+                <strong>Vehicle Type:</strong>
                 {!! Form::text('class', null, array('placeholder' => 'Class','class' => 'form-control')) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Make:</strong>
+                <strong>Vehicle Model:</strong>
                 {!! Form::text('make', null, array('placeholder' => 'Make','class' => 'form-control')) !!}
             </div>
         </div>
@@ -79,7 +79,7 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-6">
             <div class="form-group">
-                <strong>Your Suggest Price Of Vehicle:</strong>
+                <strong>Your Suggest Price Of Vehicle(Rs.):</strong>
                 {!! Form::text('price', null, array('placeholder' => 'Price','class' => 'form-control')) !!}
             </div>
         </div>

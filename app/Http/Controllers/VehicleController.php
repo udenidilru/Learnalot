@@ -40,6 +40,8 @@ class VehicleController extends Controller
             'class'    =>  'required',
             'make'     =>  'required',
             'number'    =>  'required',
+            'color'     =>  'required',
+            'enumber'    =>  'required',
             'description'     =>  'required',
             'image'         =>  'required|image|max:2048'
         ]);
@@ -52,6 +54,8 @@ class VehicleController extends Controller
             'class'       =>   $request->class,
             'make'        =>   $request->make,
             'number'       =>   $request->number,
+            'color'        =>   $request->color,
+            'enumber'       =>   $request->enumber,
             'description'        =>   $request->description,
             'image'            =>   $new_name
         );
@@ -102,6 +106,8 @@ class VehicleController extends Controller
                 'class'    =>  'required',
                 'make'     =>  'required',
                 'number'    =>  'required',
+                'color'     =>  'required',
+                'enumber'    =>  'required',
                 'description'     =>  'required',
                 'image'         =>  'image|max:2048'
             ]);
@@ -115,6 +121,8 @@ class VehicleController extends Controller
                 'class'    =>  'required',
                 'make'     =>  'required',
                 'number'    =>  'required',
+                'color'     =>  'required',
+                'enumber'    =>  'required',
                 'description'     =>  'required',
             ]);
         }
@@ -123,6 +131,8 @@ class VehicleController extends Controller
             'class'       =>   $request->class,
             'make'        =>   $request->make,
             'number'       =>   $request->number,
+            'color'        =>   $request->color,
+            'enumber'       =>   $request->enumber,
             'description'        =>   $request->description,
             'image'            =>   $image_name
         );

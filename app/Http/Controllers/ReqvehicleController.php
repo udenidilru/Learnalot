@@ -63,7 +63,7 @@ class ReqvehicleController extends Controller
         }
         $product->save() ;
 
-    return redirect('/accept/create')->with('completed', 'Vehicle has been saved!');
+    return redirect('/vrequests/create')->with('completed', 'Vehicle has been saved!');
     }
 
     /**
