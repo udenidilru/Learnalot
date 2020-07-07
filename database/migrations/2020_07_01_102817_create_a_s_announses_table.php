@@ -16,6 +16,7 @@ class CreateASAnnounsesTable extends Migration
         Schema::create('a_s_announses', function (Blueprint $table) {
             $table->id();
             $table->string('message');
+            $table->string('image');
             $table->timestamps();
         });
     }

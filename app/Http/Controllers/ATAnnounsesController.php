@@ -26,8 +26,9 @@ class ATAnnounsesController extends Controller
     public function create()
     {
         $admins = DB::select('select * from admins');
+        $trainers = DB::select('select * from trainers');
         $chat = ATAnnounse::all();
-        return view('announses.atannounse')->with('admins', $admins)->with('chat',$chat);
+        return view('announses.atannounse')->with('admins', $admins)->with('chat',$chat)->with('trainers',$trainers);
     }
 
     /**
@@ -38,13 +39,21 @@ class ATAnnounsesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'message' => 'required',
+        $request->validate([
+            'message'    =>  'required',
+            'image'         =>  'required|image|max:2048'
         ]);
-        $product = new ATAnnounse($request->input()) ;
-     
-         
-        $product->save() ;
+
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $new_name);
+        $form_data = array(
+            'message'       =>   $request->message,
+            'image'            =>   $new_name
+        );
+
+        ATAnnounse::create($form_data);
 
     return redirect('/atannounse/create')->with('completed', 'message has been saved!');
     }

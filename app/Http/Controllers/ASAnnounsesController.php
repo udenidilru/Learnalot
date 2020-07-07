@@ -26,8 +26,9 @@ class ASAnnounsesController extends Controller
     public function create()
     {
         $admins = DB::select('select * from admins');
+        $students = DB::select('select * from students');
         $chat = ASAnnounse::all();
-        return view('announses.asannounse')->with('admins', $admins)->with('chat',$chat);
+        return view('announses.asannounse')->with('admins', $admins)->with('chat',$chat)->with('students',$students);
     }
 
     /**
@@ -38,16 +39,26 @@ class ASAnnounsesController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'message' => 'required',
+        $request->validate([
+            'message'    =>  'required',
+            'image'         =>  'required|image|max:2048'
         ]);
-        $product = new ASAnnounse($request->input()) ;
-     
-         
-        $product->save() ;
 
-    return redirect('/asannounse/create')->with('completed', 'Vehicle has been saved!');
+        $image = $request->file('image');
+
+        $new_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('images'), $new_name);
+        $form_data = array(
+            'message'       =>   $request->message,
+            'image'            =>   $new_name
+        );
+
+        ASAnnounse::create($form_data);
+
+    return redirect('/asannounse/create')->with('completed', 'message has been saved!');
     }
+    /////////////////////////////
+    
 
     /**
      * Display the specified resource.
